@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Earth Keepers — Environmental Stewardship in Action</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1a3a2a; --moss: #2d5a3d; --leaf: #4a8c5c;
+  --sage: #7db88a; --fern: #a8d4b0; --amber: #e8a83a; --gold: #f0c040;
+  --clay: #c4622d; --cream: #f5ede0; --parchment: #ede3d0;
+  --bark: #6b4226; --sky: #7ab8d4; --mist: #d4eae0;
+  --richyll:#4a8c5c; --richyll-bg:rgba(74,140,92,.12);
+  --jahzara:#7ab8d4;  --jahzara-bg:rgba(122,184,212,.12);
+  --john:#e8a83a;     --john-bg:rgba(232,168,58,.12);
+  --jea:#c4622d;      --jea-bg:rgba(196,98,45,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--forest);overflow-x:hidden;}
+::-webkit-scrollbar{width:7px;}::-webkit-scrollbar-track{background:var(--parchment);}::-webkit-scrollbar-thumb{background:var(--leaf);border-radius:4px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(26,58,42,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(74,140,92,.25);}
+.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.nav-logo-badge{width:36px;height:36px;border-radius:50%;background:var(--leaf);display:flex;align-items:center;justify-content:center;font-size:17px;animation:breathe 3s ease-in-out infinite;}
+@keyframes breathe{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--cream);}
+.nav-logo-text span{color:var(--amber);}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none;}
+.nav-links a{font-size:.78rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--fern);text-decoration:none;transition:color .25s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--amber);transform:scaleX(0);transform-origin:right;transition:transform .3s;}
+.nav-links a:hover{color:var(--amber);}.nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--forest);display:flex;align-items:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);}
+.orb1{width:560px;height:560px;background:radial-gradient(circle,rgba(74,140,92,.22) 0%,transparent 70%);top:-120px;right:-80px;animation:drift 12s ease-in-out infinite alternate;}
+.orb2{width:380px;height:380px;background:radial-gradient(circle,rgba(232,168,58,.12) 0%,transparent 70%);bottom:60px;left:15%;animation:drift 14s ease-in-out infinite alternate-reverse;}
+.orb3{width:280px;height:280px;background:radial-gradient(circle,rgba(122,184,212,.1) 0%,transparent 70%);top:35%;left:-40px;animation:drift 10s ease-in-out infinite alternate;}
+@keyframes drift{from{transform:translate(0,0);}to{transform:translate(24px,18px);}}
+.hero-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:2;width:100%;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:22px;animation:fadeUp .8s .1s both;}
+.hero-eyebrow-line{width:30px;height:1px;background:var(--amber);}
+h1.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,4.5vw,5rem);font-weight:900;line-height:1.06;color:var(--cream);margin-bottom:24px;animation:fadeUp .8s .25s both;}
+h1.hero-title em{font-style:italic;color:var(--sage);display:block;}
+h1.hero-title .hl{color:var(--amber);}
+.hero-desc{font-family:'Lora',serif;font-size:1.05rem;line-height:1.8;color:var(--fern);max-width:460px;margin-bottom:32px;animation:fadeUp .8s .4s both;}
+.hero-members{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;animation:fadeUp .8s .55s both;}
+.member-pill{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:24px;font-size:.82rem;font-weight:600;border:1.5px solid;}
+.hero-actions{display:flex;gap:14px;animation:fadeUp .8s .7s both;}
+.btn-primary{background:var(--amber);color:var(--forest);padding:13px 30px;border-radius:28px;font-weight:600;font-size:.88rem;text-decoration:none;transition:all .3s;box-shadow:0 6px 22px rgba(232,168,58,.35);}
+.btn-primary:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,168,58,.45);}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.2);color:var(--cream);padding:12px 28px;border-radius:28px;font-size:.88rem;text-decoration:none;transition:all .3s;}
+.btn-ghost:hover{border-color:var(--sage);color:var(--sage);background:rgba(74,140,92,.1);}
+.hero-weeks{display:grid;grid-template-columns:1fr 1fr;gap:14px;animation:fadeUp .8s .35s both;}
+.week-preview-card{border-radius:14px;padding:22px 20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);cursor:pointer;transition:all .3s;text-decoration:none;}
+.week-preview-card:hover{background:rgba(74,140,92,.2);border-color:rgba(74,140,92,.4);transform:translateY(-4px);}
+.wpc-icon{font-size:2rem;margin-bottom:10px;display:block;}
+.wpc-week{font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.wpc-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:4px;}
+.wpc-dates{font-size:.72rem;color:var(--fern);opacity:.7;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* TICKER */
+.ticker{background:var(--forest);padding:12px 0;overflow:hidden;border-bottom:1px solid rgba(74,140,92,.25);}
+.ticker-track{display:flex;gap:50px;white-space:nowrap;animation:tick 35s linear infinite;}
+.ticker-item{display:flex;align-items:center;gap:12px;font-size:.72rem;font-weight:500;letter-spacing:1.8px;text-transform:uppercase;color:var(--fern);flex-shrink:0;}
+.ticker-dot{width:5px;height:5px;background:var(--amber);border-radius:50%;}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* WEEK SECTIONS */
+.week-section{padding:90px 48px;}
+.week-section:nth-child(odd){background:var(--parchment);}
+.week-section:nth-child(even){background:var(--cream);}
+.week-header{max-width:1280px;margin:0 auto 56px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.week-number-label{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.week-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,2.8rem);font-weight:900;color:var(--forest);line-height:1.15;}
+.week-title em{font-style:italic;}
+.week-dates{font-family:'Lora',serif;font-size:.9rem;color:var(--bark);opacity:.7;margin-top:6px;}
+.week-members-legend{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.legend-chip{display:flex;align-items:center;gap:7px;padding:7px 15px;border-radius:20px;font-size:.78rem;font-weight:600;border:1.5px solid;}
+.days-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+
+/* DAY CARD */
+.day-card{background:#fff;border-radius:16px;box-shadow:0 3px 14px rgba(26,58,42,.07);overflow:hidden;transition:all .35s cubic-bezier(.23,1,.32,1);border:1.5px solid transparent;display:flex;flex-direction:column;}
+.day-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(26,58,42,.14);}
+.day-card-header{padding:18px 20px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(26,58,42,.06);}
+.day-badge{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 11px;border-radius:12px;}
+.member-tag{display:flex;align-items:center;gap:7px;font-size:.78rem;font-weight:600;padding:5px 13px;border-radius:16px;}
+.video-area{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--forest);cursor:pointer;flex-shrink:0;}
+.video-area-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;transition:transform .5s ease;}
+.day-card:hover .video-area-bg{transform:scale(1.04);}
+.video-area-emoji{font-size:3rem;position:relative;z-index:1;}
+.video-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(0,0,0,.6));}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--forest);opacity:0;transition:opacity .3s,transform .3s;transform:translate(-50%,-50%) scale(.8);box-shadow:0 4px 18px rgba(0,0,0,.3);z-index:5;}
+.day-card:hover .play-btn{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.video-label{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;font-size:.72rem;color:rgba(255,255,255,.9);font-weight:500;z-index:4;}
+.video-status-badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.5);color:rgba(255,255,255,.85);font-size:.62rem;padding:3px 8px;border-radius:8px;backdrop-filter:blur(4px);z-index:4;letter-spacing:.5px;}
+.day-card-body{padding:18px 20px;flex:1;}
+.activity-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--forest);line-height:1.3;margin-bottom:10px;}
+.reflection-text{font-family:'Lora',serif;font-size:.84rem;line-height:1.75;color:var(--bark);opacity:.85;}
+.reflection-text.collapsed{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;}
+.read-toggle{background:none;border:none;cursor:pointer;font-size:.75rem;font-weight:600;margin-top:8px;padding:0;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:4px;transition:gap .2s;}
+.read-toggle:hover{gap:8px;}
+
+/* SYNTHESIS */
+.synthesis-block{max-width:1280px;margin:40px auto 0;background:var(--forest);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;box-shadow:0 12px 40px rgba(26,58,42,.2);}
+.synthesis-left{padding:40px 32px;background:rgba(255,255,255,.05);border-right:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:12px;}
+.synthesis-icon{font-size:3rem;}
+.synthesis-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amber);}
+.synthesis-author{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--cream);line-height:1.3;}
+.synthesis-role{font-size:.75rem;color:var(--fern);opacity:.7;}
+.synthesis-right{padding:40px 44px;}
+.synthesis-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--cream);margin-bottom:14px;line-height:1.3;}
+.synthesis-title em{font-style:italic;color:var(--sage);}
+.synthesis-body{font-family:'Lora',serif;font-size:.95rem;line-height:1.85;color:var(--fern);opacity:.88;}
+
+/* MEMBERS */
+.members-section{background:var(--forest);padding:90px 48px;}
+.members-grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.member-card{border-radius:18px;padding:32px 24px;text-align:center;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);transition:all .35s;}
+.member-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);}
+.member-avatar-big{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 16px;border:3px solid;}
+.member-name-big{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:6px;}
+.member-acts{font-size:.75rem;color:var(--fern);opacity:.7;margin-bottom:12px;}
+.member-weeks{display:flex;gap:6px;justify-content:center;}
+.week-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);}
+.week-dot.done{background:var(--leaf);}
+
+/* SECTION HEADER */
+.section-header{text-align:center;margin-bottom:56px;}
+.section-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:var(--forest);line-height:1.2;margin-bottom:12px;}
+.section-sub{font-family:'Lora',serif;font-size:.95rem;color:var(--bark);max-width:480px;margin:0 auto;line-height:1.7;opacity:.8;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(10px);}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--forest);border-radius:20px;padding:32px;max-width:680px;width:92%;position:relative;transform:scale(.9) translateY(20px);transition:all .3s cubic-bezier(.34,1.56,.64,1);border:1px solid rgba(74,140,92,.3);}
+.modal-overlay.open .modal{transform:scale(1) translateY(0);}
+.modal-close{position:absolute;top:14px;right:14px;width:30px;height:30px;background:rgba(255,255,255,.1);border-radius:50%;border:none;cursor:pointer;font-size:1rem;color:var(--cream);display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.modal-close:hover{background:rgba(255,255,255,.2);}
+.modal-video-area{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin-bottom:20px;}
+.modal-member-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:16px;font-size:.8rem;font-weight:600;margin-bottom:12px;}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--cream);margin-bottom:10px;line-height:1.3;}
+.modal-body{font-family:'Lora',serif;font-size:.88rem;line-height:1.75;color:var(--fern);opacity:.85;}
+
+/* FOOTER */
+footer{background:var(--forest);padding:56px 48px 28px;border-top:1px solid rgba(74,140,92,.2);}
+.footer-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--cream);margin-bottom:12px;}
+.footer-brand span{color:var(--amber);}
+.footer-desc{font-family:'Lora',serif;font-size:.85rem;line-height:1.7;color:var(--fern);opacity:.7;max-width:280px;}
+.footer-col h4{font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--sage);margin-bottom:16px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-links a{color:var(--fern);text-decoration:none;font-size:.85rem;opacity:.7;transition:all .25s;}
+.footer-links a:hover{opacity:1;color:var(--cream);padding-left:4px;}
+.footer-bottom{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(74,140,92,.15);font-size:.76rem;color:var(--fern);opacity:.5;}
+
+/* SCROLL FADE */
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* NAV DROPDOWN */
+.nav-dropdown{position:relative;}
+.nav-dropdown-toggle{cursor:pointer;}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:rgba(20,46,32,.97);backdrop-filter:blur(16px);border:1px solid rgba(74,140,92,.3);border-radius:12px;padding:8px 0;min-width:230px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;transform:translateX(-50%) translateY(-6px);z-index:200;box-shadow:0 12px 40px rgba(0,0,0,.4);}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.nav-dropdown-menu::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:12px;height:12px;background:rgba(20,46,32,.97);border-left:1px solid rgba(74,140,92,.3);border-top:1px solid rgba(74,140,92,.3);rotate:45deg;}
+.nav-dropdown-menu a{display:block;padding:10px 20px;font-size:.78rem;font-weight:500;letter-spacing:1px;color:var(--fern);text-decoration:none;transition:background .2s,color .2s;white-space:nowrap;}
+.nav-dropdown-menu a:hover{background:rgba(74,140,92,.2);color:var(--amber);}
+.nav-community-btn{background:var(--amber)!important;color:var(--forest)!important;padding:8px 18px!important;border-radius:20px!important;font-weight:600!important;transition:background .25s,transform .2s!important;}
+.nav-community-btn:hover{background:var(--gold)!important;transform:translateY(-1px)!important;}
+.nav-community-btn::after{display:none!important;}
+
+/* OUR PROJECT SECTION */
+.project-section{padding:90px 48px;background:var(--forest);}
+.project-inner{max-width:1280px;margin:0 auto;}
+.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:56px;}
+.project-lead{font-family:'Lora',serif;font-size:1.1rem;line-height:1.85;color:var(--fern);margin-bottom:24px;opacity:.9;}
+.project-detail{font-family:'Lora',serif;font-size:.92rem;line-height:1.8;color:var(--fern);opacity:.72;margin-bottom:24px;}
+.project-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px;}
+.stat-card{background:rgba(255,255,255,.06);border:1px solid rgba(74,140,92,.25);border-radius:14px;padding:22px 20px;text-align:center;transition:background .3s;}
+.stat-card:hover{background:rgba(74,140,92,.15);}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--amber);line-height:1;}
+.stat-label{font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fern);opacity:.7;margin-top:6px;}
+.project-timeline{display:flex;flex-direction:column;gap:0;}
+.timeline-item{display:flex;gap:20px;position:relative;}
+.timeline-item:not(:last-child)::after{content:'';position:absolute;left:19px;top:44px;bottom:-8px;width:2px;background:rgba(74,140,92,.25);}
+.timeline-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;border:2px solid rgba(74,140,92,.4);background:rgba(74,140,92,.12);}
+.timeline-content{padding-bottom:28px;}
+.timeline-week{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.timeline-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:4px;}
+.timeline-desc{font-size:.8rem;color:var(--fern);opacity:.7;line-height:1.6;}
+@media(max-width:900px){.project-grid{grid-template-columns:1fr;gap:40px;}.project-section{padding:64px 24px;}}
+
+/* COMMUNITY SECTION */
+.community-section{padding:100px 48px;background:var(--parchment);position:relative;overflow:hidden;}
+.community-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(74,140,92,.08) 0%,transparent 70%);pointer-events:none;}
+.community-inner{max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.community-badge{display:inline-flex;align-items:center;gap:10px;background:var(--forest);color:var(--amber);font-size:.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:8px 20px;border-radius:24px;margin-bottom:28px;}
+.community-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:var(--forest);line-height:1.1;margin-bottom:20px;}
+.community-title em{font-style:italic;color:var(--leaf);}
+.community-desc{font-family:'Lora',serif;font-size:1rem;line-height:1.8;color:var(--bark);max-width:580px;margin:0 auto 40px;opacity:.85;}
+.community-form{display:flex;flex-direction:column;gap:16px;max-width:480px;margin:0 auto 40px;}
+.community-form input,.community-form textarea{width:100%;padding:14px 20px;border-radius:12px;border:1.5px solid rgba(26,58,42,.15);background:#fff;font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--forest);outline:none;transition:border-color .25s,box-shadow .25s;}
+.community-form input:focus,.community-form textarea:focus{border-color:var(--leaf);box-shadow:0 0 0 3px rgba(74,140,92,.12);}
+.community-form textarea{height:110px;resize:vertical;}
+.community-submit{background:var(--forest);color:var(--cream);padding:14px 36px;border-radius:28px;font-size:.92rem;font-weight:600;border:none;cursor:pointer;transition:all .3s;box-shadow:0 6px 22px rgba(26,58,42,.2);}
+.community-submit:hover{background:var(--moss);transform:translateY(-2px);box-shadow:0 10px 30px rgba(26,58,42,.3);}
+.community-values{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:10px;}
+.community-value{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:24px;background:rgba(26,58,42,.07);border:1.5px solid rgba(26,58,42,.12);font-size:.8rem;font-weight:600;color:var(--forest);}
+.community-success{display:none;padding:24px;background:rgba(74,140,92,.12);border:1.5px solid var(--leaf);border-radius:16px;font-family:'Lora',serif;color:var(--forest);text-align:center;}
+@media(max-width:900px){.community-section{padding:64px 24px;}}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.days-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:900px){
+  nav{padding:12px 20px;}.nav-links{display:none;}
+  .hero{padding:96px 24px 64px;}.hero-inner{grid-template-columns:1fr;gap:40px;}.hero-weeks{display:none;}
+  .week-section{padding:64px 24px;}.week-header{flex-direction:column;align-items:flex-start;}
+  .days-grid{grid-template-columns:1fr;}
+  .synthesis-block{grid-template-columns:1fr;}.synthesis-left{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);padding:28px;flex-direction:row;text-align:left;}
+  .members-grid{grid-template-columns:repeat(2,1fr);}.members-section{padding:64px 24px;}
+  .footer-inner{grid-template-columns:1fr;gap:28px;}.footer-bottom{flex-direction:column;gap:8px;text-align:center;}
+}
+@media(max-width:580px){.members-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-badge">🌿</div>
+    <span class="nav-logo-text">The Earth <span>Keepers</span></span>
+  </a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="#week1" class="nav-dropdown-toggle">Videos ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="#week1">♻️ Week 1 — Waste Reduction</a>
+        <a href="#week2">⚡ Week 2 — Energy Conservation</a>
+        <a href="#week3">💧 Week 3 — Water Conservation</a>
+        <a href="#week4">🌍 Week 4 — Sustainable Habits</a>
+      </div>
+    </li>
+    <li><a href="#our-project">Our Project</a></li>
+    <li><a href="#members">Our Team</a></li>
+    <li><a href="#community" class="nav-community-btn">Join Our Community</a></li>
+  </ul>
+</nav>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-video-area" id="modalVideo"></div>
+    <div id="modalMemberTag"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Environmental Stewardship in Action</div>
+      <h1 class="hero-title"><em>Nurturing the Earth,</em>One <span class="hl">Act</span> at a Time</h1>
+      <p class="hero-desc">Four stewards. Four weeks. Twenty-eight daily acts of environmental stewardship — documenting waste reduction, energy conservation, water care, and sustainable living.</p>
+      <div class="hero-members">
+        <div class="member-pill" style="color:var(--richyll);border-color:var(--richyll);background:var(--richyll-bg);">🌿 Richyll Andrew Solis</div>
+        <div class="member-pill" style="color:var(--jahzara);border-color:var(--jahzara);background:var(--jahzara-bg);">💧 Jahzara Andoy</div>
+        <div class="member-pill" style="color:var(--john);border-color:var(--john);background:var(--john-bg);">☀️ John Marion Albano</div>
+        <div class="member-pill" style="color:var(--jea);border-color:var(--jea);background:var(--jea-bg);">🌸 Jea Karol Mamparo</div>
+      </div>
+      <div class="hero-actions">
+        <a href="#week1" class="btn-primary">🎬 Explore the Journey</a>
+        <a href="#members" class="btn-ghost">👥 Meet the Team</a>
+      </div>
+    </div>
+    <div class="hero-weeks">
+      <a href="#week1" class="week-preview-card"><span class="wpc-icon">♻️</span><div class="wpc-week">Week 1</div><div class="wpc-title">Waste Reduction</div><div class="wpc-dates">March 15–21</div></a>
+      <a href="#week2" class="week-preview-card"><span class="wpc-icon">⚡</span><div class="wpc-week">Week 2</div><div class="wpc-title">Energy Conservation</div><div class="wpc-dates">March 22–28</div></a>
+      <a href="#week3" class="week-preview-card"><span class="wpc-icon">💧</span><div class="wpc-week">Week 3</div><div class="wpc-title">Water Conservation</div><div class="wpc-dates">March 29 – April 4</div></a>
+      <a href="#week4" class="week-preview-card"><span class="wpc-icon">🌍</span><div class="wpc-week">Week 4</div><div class="wpc-title">Sustainable Habits</div><div class="wpc-dates">April 5–11</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+
+<!-- WEEK 1 -->
+<section class="week-section" id="week1">
+  <div class="week-header">
+    <div>
+      <div class="week-number-label" style="color:var(--leaf);"><span style="width:24px;height:1px;background:var(--leaf);display:block;"></span>Week 1 · March 15–21<span style="width:24px;height:1px;background:var(--leaf);display:block;"></span></div>
+      <h2 class="week-title">Waste <em>Reduction</em></h2>
+      <div class="week-dates">♻️ Reducing plastic, reusing materials, and building mindful consumption habits</div>
+    </div>
+    <div class="week-members-legend">
+      <div class="legend-chip" style="color:var(--richyll);border-color:var(--richyll);background:var(--richyll-bg);">🌿 Richyll</div>
+      <div class="legend-chip" style="color:var(--jahzara);border-color:var(--jahzara);background:var(--jahzara-bg);">💧 Jahzara</div>
+      <div class="legend-chip" style="color:var(--john);border-color:var(--john);background:var(--john-bg);">☀️ John</div>
+      <div class="legend-chip" style="color:var(--jea);border-color:var(--jea);background:var(--jea-bg);">🌸 Jea</div>
+    </div>
+  </div>
+  <div class="days-grid" id="g1"></div>
+  <div class="synthesis-block fade-in">
+    <div class="synthesis-left"><div class="synthesis-icon">✍️</div><div><div class="synthesis-label">Weekly Synthesis</div><div class="synthesis-author">John Marion Albano</div><div class="synthesis-role">Week 1 · Waste Reduction</div></div></div>
+    <div class="synthesis-right">
+      <div class="synthesis-title">From Simple Tasks to <em>Meaningful Lessons</em></div>
+      <div class="synthesis-body">Our first week of waste reduction showed that simple actions, like my choice to reuse food containers, Richyll bringing reusable bags, Jea practicing waste segregation, and Jahzara carrying a reusable water bottle, can lead to meaningful changes in awareness and habits. Although Richyll felt awkward using reusable bags in plastic-heavy spaces and Jea found carrying an eco-kit inconvenient, these experiences taught us to be more mindful of our consumption. Jahzara’s struggle to use both sides of paper reflected how sustainability often means choosing responsibility over convenience or appearance. Through these practices, we learned that consistency is what turns small actions into lasting habits. In the end, this week showed us that embracing simple, imperfect efforts can reduce waste, support others, and give us pride in helping the environment.
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK 2 -->
+<section class="week-section" id="week2">
+  <div class="week-header">
+    <div>
+      <div class="week-number-label" style="color:var(--amber);"><span style="width:24px;height:1px;background:var(--amber);display:block;"></span>Week 2 · March 22–28<span style="width:24px;height:1px;background:var(--amber);display:block;"></span></div>
+      <h2 class="week-title">Energy <em>Conservation</em></h2>
+      <div class="week-dates">⚡ Reducing electricity use through mindful daily habits and natural alternatives</div>
+    </div>
+    <div class="week-members-legend">
+      <div class="legend-chip" style="color:var(--richyll);border-color:var(--richyll);background:var(--richyll-bg);">🌿 Richyll</div>
+      <div class="legend-chip" style="color:var(--jahzara);border-color:var(--jahzara);background:var(--jahzara-bg);">💧 Jahzara</div>
+      <div class="legend-chip" style="color:var(--john);border-color:var(--john);background:var(--john-bg);">☀️ John</div>
+      <div class="legend-chip" style="color:var(--jea);border-color:var(--jea);background:var(--jea-bg);">🌸 Jea</div>
+    </div>
+  </div>
+  <div class="days-grid" id="g2"></div>
+  <div class="synthesis-block fade-in">
+    <div class="synthesis-left"><div class="synthesis-icon">✍️</div><div><div class="synthesis-label">Weekly Synthesis</div><div class="synthesis-author">Jahzara Andoy</div><div class="synthesis-role">Week 2 · Energy Conservation</div></div></div>
+    <div class="synthesis-right">
+      <div class="synthesis-title">Conscious Routines, <em>Smaller Footprints</em></div>
+      <div class="synthesis-body">Throughout the week, the activities we performed show that saving energy mainly comes down to being more conscious of our everyday routines. Our experiences with turning off lights and unplugging devices highlight how easy it is to waste electricity on autopilot, and how small actions require discipline at first but eventually become natural. Our use of natural lighting and reduced screen time reflect practical decisions, proving that even simple adjustments in daily habits can already lessen energy consumption. At the same time, using power-saving modes and setting timers for air conditioners show that technology can also support conservation when used properly, despite minor inconveniences like reduced performance or comfort. Our experience with using sunlight to dry clothes adds another perspective, showing that conserving energy can also mean maximizing available natural resources.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK 3 -->
+<section class="week-section" id="week3">
+  <div class="week-header">
+    <div>
+      <div class="week-number-label" style="color:var(--sky);"><span style="width:24px;height:1px;background:var(--sky);display:block;"></span>Week 3 · March 29 – April 4<span style="width:24px;height:1px;background:var(--sky);display:block;"></span></div>
+      <h2 class="week-title">Water <em>Conservation</em></h2>
+      <div class="week-dates">💧 Preserving clean water through mindful use and resourceful reuse</div>
+    </div>
+    <div class="week-members-legend">
+      <div class="legend-chip" style="color:var(--richyll);border-color:var(--richyll);background:var(--richyll-bg);">🌿 Richyll</div>
+      <div class="legend-chip" style="color:var(--jahzara);border-color:var(--jahzara);background:var(--jahzara-bg);">💧 Jahzara</div>
+      <div class="legend-chip" style="color:var(--john);border-color:var(--john);background:var(--john-bg);">☀️ John</div>
+      <div class="legend-chip" style="color:var(--jea);border-color:var(--jea);background:var(--jea-bg);">🌸 Jea</div>
+    </div>
+  </div>
+  <div class="days-grid" id="g3"></div>
+  <div class="synthesis-block fade-in">
+    <div class="synthesis-left"><div class="synthesis-icon">✍️</div><div><div class="synthesis-label">Weekly Synthesis</div><div class="synthesis-author">Jea Karol Mamparo</div><div class="synthesis-role">Week 3 · Water Conservation</div></div></div>
+    <div class="synthesis-right">
+      <div class="synthesis-title">Small Steps Toward <em>Water Wisdom</em></div>
+      <div class="synthesis-body">Throughout the week, the activities we performed demonstrate that it is simply a matter of being more conscious of daily routines in order to save water. John's experience highlights how easy it is to waste water on autopilot, and how small adjustments like turning off the tap or shortening showers take discipline but eventually become manageable. Jea's center around practical decisions and it is evident that even without a lot of complexity simple decisions such as taking a bucket or reporting leaks can already help. Jahzara's reflections point out how convenience often leads to waste, yet how routines can be modified with a little more effort, which will make things seem less wasteful in the long run. Richyll's part adds another perspective by using rainwater, showing that conservation can also involve making use of available resources, while still being mindful of possible downsides. In general, the third week demonstrates that saving water cannot be done in one big step, but in small steps, becoming more aware of the everyday activity until these small steps become natural.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK 4 -->
+<section class="week-section" id="week4">
+  <div class="week-header">
+    <div>
+      <div class="week-number-label" style="color:var(--clay);"><span style="width:24px;height:1px;background:var(--clay);display:block;"></span>Week 4 · April 5–11<span style="width:24px;height:1px;background:var(--clay);display:block;"></span></div>
+      <h2 class="week-title">Sustainable <em>Habits</em></h2>
+      <div class="week-dates">🌍 Building a lifestyle of conscious, planet-friendly choices</div>
+    </div>
+    <div class="week-members-legend">
+      <div class="legend-chip" style="color:var(--richyll);border-color:var(--richyll);background:var(--richyll-bg);">🌿 Richyll</div>
+      <div class="legend-chip" style="color:var(--jahzara);border-color:var(--jahzara);background:var(--jahzara-bg);">💧 Jahzara</div>
+      <div class="legend-chip" style="color:var(--john);border-color:var(--john);background:var(--john-bg);">☀️ John</div>
+      <div class="legend-chip" style="color:var(--jea);border-color:var(--jea);background:var(--jea-bg);">🌸 Jea</div>
+    </div>
+  </div>
+  <div class="days-grid" id="g4"></div>
+  <div class="synthesis-block fade-in">
+    <div class="synthesis-left"><div class="synthesis-icon">✍️</div><div><div class="synthesis-label">Weekly Synthesis</div><div class="synthesis-author">Richyll Andrew Solis</div><div class="synthesis-role">Week 4 · Sustainable Habits</div></div></div>
+    <div class="synthesis-right">
+      <div class="synthesis-title">Awareness as the <em>First Act</em> of Change</div>
+      <div class="synthesis-body">The significant actions of this week are having such awareness regarding the individual impact on the environment. We had seen the change of lifestyle, even for a bit, was very tedious at first, but we realized that this could be good, especially in terms of energy conservation. We also use eco-friendly products, but they are often not very prominent, especially when it comes to plastics. Additionally, we recognize the consequences of climate change around us, and doing simple acts can help minimize these effects.</div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROJECT -->
+<section class="project-section" id="our-project">
+  <div class="project-inner">
+    <div class="section-header">
+      <div class="section-eyebrow" style="color:var(--amber);"><span style="width:26px;height:1px;background:var(--amber);display:block;"></span>About This Project<span style="width:26px;height:1px;background:var(--amber);display:block;"></span></div>
+      <h2 class="section-title" style="color:var(--cream);">Our <em style="color:var(--sage);font-style:italic;">Mission</em></h2>
+      <p class="section-sub" style="color:var(--fern);">A four-week journey of environmental stewardship, one documented act at a time.</p>
+      <div class="project-title-explanation fade-in">
+        <div class="pte-label">Why "The Earth Keepers"?</div>
+        <p class="pte-text">A keeper is not just someone who owns something — it is someone who <em>protects</em> it, <em>tends</em> to it, and <em>ensures it endures</em>. We chose this name because we believe the Earth does not belong to us; we belong to it. As Earth Keepers, we have to treat the planet with the deliberate care it deserves. Every reusable bag carried, every faucet turned off, every piece of litter picked up is an act of keeping: small in scale, but sincere in intention. We keep the Earth not by saving it in a single act, but by choosing it — again and again, every day.</p>
+      </div>
+    </div>
+    <div class="project-grid">
+      <div class="project-text-block fade-in">
+        <p class="project-lead">The Earth Keepers is an initiative by four environmental stewards committed to practicing and documenting genuine acts of environmental care.</p>
+        <p class="project-detail">Each week, every member took on a daily environmental challenge — from reducing plastic waste and conserving energy, to mindful water use and building sustainable habits. The goal wasn't perfection; it was consistency, awareness, and growth. We documented not just what we did, but how it felt, what was hard, and what changed in us.</p>
+        <p class="project-detail">This website is our living record — a testament that environmental stewardship doesn't require grand gestures. It begins with small, intentional choices made every single day.</p>
+        <div class="project-stats">
+          <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Team Members</div></div>
+          <div class="stat-card"><div class="stat-num">28</div><div class="stat-label">Acts</div></div>
+          <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Weeks of Action</div></div>
+          <div class="stat-card"><div class="stat-num">28</div><div class="stat-label">Video Clips</div></div>
+        </div>
+      </div>
+      <div class="project-timeline fade-in">
+        <div class="timeline-item">
+          <div class="timeline-dot">♻️</div>
+          <div class="timeline-content">
+            <div class="timeline-week">Week 1 · March 15–21</div>
+            <div class="timeline-title">Waste Reduction</div>
+            <div class="timeline-desc">Reducing plastic, reusing containers, segregating trash, and building mindful consumption habits one bag at a time.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">⚡</div>
+          <div class="timeline-content">
+            <div class="timeline-week">Week 2 · March 22–28</div>
+            <div class="timeline-title">Energy Conservation</div>
+            <div class="timeline-desc">Turning off lights, unplugging devices, using natural sunlight, and rethinking our relationship with electricity.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">💧</div>
+          <div class="timeline-content">
+            <div class="timeline-week">Week 3 · March 29 – April 4</div>
+            <div class="timeline-title">Water Conservation</div>
+            <div class="timeline-desc">Shorter showers, reusing rinse water, fixing leaks, and collecting rainwater for household use.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">🌍</div>
+          <div class="timeline-content">
+            <div class="timeline-week">Week 4 · April 5–11</div>
+            <div class="timeline-title">Sustainable Habits</div>
+            <div class="timeline-desc">Walking instead of riding, choosing eco-friendly products, picking up litter, and sharing what we learned with others.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community-section" id="community">
+  <div class="community-inner">
+    <div class="community-badge fade-in">🌱 Join the Movement</div>
+    <h2 class="community-title fade-in">Be Part of Our <em>Green Community</em></h2>
+    <p class="community-desc fade-in">Inspired by our journey? We'd love to hear from you. Share your own environmental acts, ask us about our experience, or just say hello — every connection plants a seed.</p>
+    <div class="community-form fade-in" id="communityForm">
+      <input type="text" id="cfName" placeholder="Your name" autocomplete="off">
+      <input type="email" id="cfEmail" placeholder="Your email (optional)" autocomplete="off">
+      <textarea id="cfMessage" placeholder="Share your thoughts, your own eco-act, or a message for the team…"></textarea>
+      <button class="community-submit" onclick="submitCommunity()">🌿 Send Message</button>
+    </div>
+    <div class="community-success fade-in" id="communitySuccess">
+      <div style="font-size:2rem;margin-bottom:12px;">🌿</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--forest);margin-bottom:8px;">Thank you for reaching out!</div>
+      <div style="font-size:.9rem;color:var(--bark);opacity:.8;">Your message has been received. Every act of care — including this one — makes a difference.</div>
+    </div>
+    <div class="community-values fade-in">
+      <div class="community-value">🌿 Environmental Awareness</div>
+      <div class="community-value">💧 Sustainable Living</div>
+      <div class="community-value">☀️ Collective Action</div>
+      <div class="community-value">♻️ Mindful Consumption</div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERS -->
+<section class="members-section" id="members">
+  <div class="section-header">
+    <div class="section-eyebrow" style="color:var(--amber);"><span style="width:26px;height:1px;background:var(--amber);display:block;"></span>Our Team<span style="width:26px;height:1px;background:var(--amber);display:block;"></span></div>
+    <h2 class="section-title" style="color:var(--cream);">The Earth <em style="color:var(--sage);font-style:italic;">Keepers</em></h2>
+    <p class="section-sub" style="color:var(--fern);">Four individuals committed to environmental stewardship — one daily act at a time.</p>
+  </div>
+  <div class="members-grid">
+    <div class="member-card fade-in">
+      <div class="member-avatar-big" style="background:var(--richyll-bg);border-color:var(--richyll);">🌿</div>
+      <div class="member-name-big">Richyll Andrew Solis</div>
+      <div class="member-acts">BS Chemical Engineering</div>
+      <div class="member-weeks"><div class="week-dot done"></div><div class="week-dot done"></div><div class="week-dot done"></div><div class="week-dot done"></div></div>
+    </div>
+    <div class="member-card fade-in">
+      <div class="member-avatar-big" style="background:var(--jahzara-bg);border-color:var(--jahzara);">💧</div>
+      <div class="member-name-big">Jahzara Andoy</div>
+      <div class="member-acts">BS Architecture</div>
+      <div class="member-weeks"><div class="week-dot done"></div><div class="week-dot done"></div><div class="week-dot done"></div><div class="week-dot done"></div></div>
+    </div>
+    <div class="member-card fade-in">
+      <div class="member-avatar-big" style="background:var(--john-bg);border-color:var(--john);">☀️</div>
+      <div class="member-name-big">John Marion Albano</div>
+      <div class="member-acts">BS Robotics Engineering</div>
+      <div class="member-weeks"><div class="week-dot done"></div><div class="week-dot done"></div><div class="week-dot done"></div><div class="week-dot done"></div></div>
+    </div>
+    <div class="member-card fade-in">
+      <div class="member-avatar-big" style="background:var(--jea-bg);border-color:var(--jea);">🌸</div>
+      <div class="member-name-big">Jea Karol Mamparo</div>
+      <div class="member-acts">AB Psychology</div>
+      <div class="member-weeks"><div class="week-dot done"></div><div class="week-dot done"></div><div class="week-dot done"></div><div class="week-dot done"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">The Earth <span>Keepers</span></div>
+      <div class="footer-desc">An initiative for environmental stewardship — documenting daily acts of care for our planet.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Weeks</h4>
+      <ul class="footer-links">
+        <li><a href="#week1">Week 1 — Waste Reduction</a></li>
+        <li><a href="#week2">Week 2 — Energy Conservation</a></li>
+        <li><a href="#week3">Week 3 — Water Conservation</a></li>
+        <li><a href="#week4">Week 4 — Sustainable Habits</a></li>
+        <li><a href="#our-project">Our Project</a></li>
+        <li><a href="#community">Join Our Community</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Team</h4>
+      <ul class="footer-links">
+        <li><a href="#members">Richyll Andrew Solis</a></li>
+        <li><a href="#members">Jahzara Andoy</a></li>
+        <li><a href="#members">John Marion Albano</a></li>
+        <li><a href="#members">Jea Karol Mamparo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 The Earth Keepers · Environmental Stewardship</span>
+    <span>Every small act of care for the Earth matters.</span>
+  </div>
+</footer>
+
+<script>
+const M = {
+  richyll:{ name:'Richyll Andrew Solis', icon:'🌿', color:'#4a8c5c', bg:'rgba(74,140,92,.12)' },
+  jahzara:{ name:'Jahzara Andoy',         icon:'💧', color:'#7ab8d4', bg:'rgba(122,184,212,.12)' },
+  john:   { name:'John Marion Albano',    icon:'☀️', color:'#e8a83a', bg:'rgba(232,168,58,.12)' },
+  jea:    { name:'Jea Karol Mamparo',     icon:'🌸', color:'#c4622d', bg:'rgba(196,98,45,.12)' },
+};
+
+const WEEKS = [
+  { id:'g1', days:[
+    { day:1, m:'richyll', act:'Bring a reusable bag every time you shop', emoji:'🛍️', g:'linear-gradient(135deg,#1a3a2a,#4a8c5c)', s:'Completed', v:'WEEK 1/W1_D1_Solis.mp4',
+      r:'At the market, I felt a bit awkward knowing that I buy things in reusable containers where excess use of plastic is the norm in that place. In spite of that feeling, I felt proud and happy of doing simple things that help the environment. Additionally, I felt that there are times where buying in this manner can be practical and save me more money.' },
+    { day:2, m:'jahzara', act:'Use a reusable water bottle the whole week', emoji:'🍶', g:'linear-gradient(135deg,#001a3a,#1a5a8a)', s:'Completed', v:'WEEK 1/W1_D2_Andoy.mov',
+      r:'For this week, I tried to stay consistent in using a reusable water bottle every day. At first, it felt like such a small effort, but as the days went by, I became more aware of how often we rely on single-use plastic without even thinking. Choosing to use my own bottle made me feel like I was doing something intentional, even in a simple way, to reduce waste. It also helped me stay more hydrated since I always had water within reach, which felt like a small act of taking care of myself. I realized that sometimes, it begins with small, everyday choices that slowly turn into habits.' },
+    { day:3, m:'john',    act:'Reuse containers or jars for storage', emoji:'📦', g:'linear-gradient(135deg,#2a1a00,#8a5a00)', s:'Completed', v:'WEEK 1/W1_D3_Albano.mp4',
+      r:'Today, I reused a food container as a pen holder for my whiteboard markers instead of throwing it away. This simple action helps reduce plastic waste and minimizes the need to buy new storage items, which lowers overall resource consumption. From this experience, I learned that small, practical reuse habits can contribute meaningfully to environmental sustainability while also being convenient and cost-effective.' },
+    { day:4, m:'jea',     act:'Segregate your trash daily (biodegradable, recyclable, residual)', emoji:'🗂️', g:'linear-gradient(135deg,#2a0010,#7a003a)', s:'Completed', v:'WEEK 1/W1_D4_Mamparo.mov',
+      r:'I began to divide our garbage at home into plastic containers of biodegradable trash, recyclable, and residual trash. It has opened my eyes to the amount of garbage we generate and how having a correct segregation can alleviate the effects on the environment. There were also times when I was confused where to attach some of the items particularly mixed ones. Nevertheless, I got to know that such small habits are important and that being consistent and conscious about them does have a difference.' },
+    { day:5, m:'richyll', act:'Avoid buying products with excessive plastic packaging', emoji:'🚫', g:'linear-gradient(135deg,#0a2a00,#2a6a00)', s:'Completed', v:'WEEK 1/W1_D5_Solis.mp4',
+      r:'This manner of buying less plastic gave me a sense of relief and less guilt. I often wonder why there is a need to use excess plastic. When I got to buy goods in a reusable bag, it felt that this could be applied in many different ways that I want to buy, and eventually it became my habit to do so. Furthermore, the waste that I generate in my home will be lesser and the collectors will have an easier time to collect our waste.' },
+    { day:6, m:'jahzara', act:'Use both sides of paper before throwing it away', emoji:'📄', g:'linear-gradient(135deg,#1a001a,#5a005a)', s:'Completed', v:'WEEK 1/W1_D6_Andoy.mov',
+      r:"For this activity, I practiced using both sides of paper before throwing it away. As someone who journals a lot and tends to be perfectionistic, this was honestly a bit challenging for me. I usually don't like writing on the back side because of the ink marks and slight dents that show through, especially since I'm right-handed and it can make the page feel less smooth. But despite that, I tried to shift my mindset and focus on the purpose behind the task. I realized that not every page has to look perfect to be meaningful or useful. In the process, I became more mindful of how much paper I use and how small changes like this can help reduce waste. It taught me that sustainability sometimes means letting go of perfection and choosing what is more responsible instead." },
+    { day:7, m:'jea',     act:'Keep a small "eco-kit" (bag, utensils, bottle) when going out', emoji:'🎒', g:'linear-gradient(135deg,#001a2a,#005a6a)', s:'Completed', v:'WEEK 1/W1_D7_Mamparo.mov',
+      r:"In this activity, I had a small eco-kit with a tote bag, a spoon and fork, a refillable alcohol bottle, and a reusable water bottle. It made me not use single-use plastics and remain more environmentally friendly when I was out. Sometimes it felt a bit inconvenient to carry everything around. But I learned that small, prepared choices like this can make a real difference." },
+  ]},
+  { id:'g2', days:[
+    { day:1, m:'jahzara', act:'Turn off the lights whenever you leave a room', emoji:'💡', g:'linear-gradient(135deg,#1a1a00,#5a5a00)', s:'In Progress', v:'WEEK 2/W2_D1_Andoy.mov',
+      r:"I focused on turning off the lights whenever I leave a room. Since I'm barely in my dorm most of the day and usually at school, I realized how easy it is to waste electricity without even noticing. So I made a conscious effort to check the lights before I leave every time. This simple action actually helps the environment by reducing unnecessary energy use. Less electricity means less demand for power, which also means fewer emissions in the long run. One challenge I experienced was forgetting sometimes, especially when I'm in a rush or running late. There were moments where I had to go back just to turn the lights off. But eventually, it started to feel more natural, like something I automatically do before leaving." },
+    { day:2, m:'jahzara', act:'Unplug chargers and electronics when not in use', emoji:'🔌', g:'linear-gradient(135deg,#0a001a,#2a005a)', s:'In Progress', v:'WEEK 2/W2_D2_Andoy.mov',
+      r:"For this day, I focused on unplugging chargers and electronics when not in use. When I get home, I'm usually on my gaming laptop working on my architectural plates. For maximum performance, I keep it plugged in while working, but I realized that I tend to leave the charger plugged even after I'm done. So I made it a habit to unplug everything once I finish using them. This action is beneficial because it helps reduce what's called 'phantom' or standby energy consumption. By unplugging unused electronics, I'm able to minimize unnecessary electricity use, which contributes to conserving energy overall. One challenge I encountered was honestly just forgetting, especially when I'm already tired after doing plates. But over time, I started becoming more mindful, and it slowly turned into a habit." },
+    { day:3, m:'john',    act:'Use natural lighting during the day', emoji:'🌤️', g:'linear-gradient(135deg,#1a1000,#6a4000)', s:'Completed', v:'WEEK 2/W2_D3_Albano.mp4',
+      r:"Today, I chose to use only natural lighting during the day instead of turning on the lights in my room. This action reduces electricity consumption and helps lower overall demand on our power grid. The main challenge was adjusting to the shifting brightness and occasional glare on my laptop screen as the sun moved. Nonetheless, I learned that working with sunlight is a practical way to save energy while also making my workspace feel more refreshing." },
+    { day:4, m:'richyll', act:'Limit aircon or fan usage when not needed', emoji:'❄️', g:'linear-gradient(135deg,#001428,#003a68)', s:'Completed', v:'WEEK 2/W2_D4_Solis.mp4',
+      r:"This action was one of the practical ways to save energy in our household. Fortunately, our air conditioner was embedded with a usage timer with 12 hours. In that way, I am able to utilize that functionality to save more energy. This is important especially when it automatically turns off itself while we sleep late at night. Usually, we woke up while the air conditioner is still running, not knowing how much energy it took to run it and its eventual cost too. These can have consequences on us, and to the environment. In that simple step, I am able to enact that consciousness on our environment and to ourselves, especially with the rising costs of fuel nowadays. I hope for building more manners on to cool ourselves in a cheaper and environmentally-friendly way." },
+    { day:5, m:'john',    act:'Set your phone/laptop to power-saving mode', emoji:'🔋', g:'linear-gradient(135deg,#002a00,#006000)', s:'Completed', v:'WEEK 2/W2_D5_Albano.mp4',
+      r:"For this activity, I set my laptop to power-saving mode for the entire day to conserve energy. This habit helps the environment by extending my battery life and reducing the frequency of charging from the outlet. Initially, it was a bit difficult to work with a dimmer screen and slower processing speeds, but I later adapted to this setting. Through this, I realized I don't always need high-performance settings to be productive for my daily tasks." },
+    { day:6, m:'jea',     act:'Reduce screen time to save electricity', emoji:'📵', g:'linear-gradient(135deg,#1a0a00,#5a2a00)', s:'Completed', v:'WEEK 2/W2_D6_Mamparo.mov',
+      r:"For this activity, I reduced my screen time and spent more time studying instead. I realized that using gadgets for long periods of time consumes a lot of electricity. By limiting unnecessary screen use, I was able to save energy and focus better on my schoolwork. It also helped me become more productive and avoid distractions. This small habit can help both the environment and my daily routine." },
+    { day:7, m:'richyll', act:'Air-dry clothes instead of using electric dryers', emoji:'👕', g:'linear-gradient(135deg,#1a1a00,#6a6a00)', s:'Completed', v:'WEEK 2/W2_D7_Solis.mp4',
+      r:"Optimization of the sun's energy is the most important thing that I used in this day. It was a hot sunny day when I used my time to clean my clothes. I utilized the space in my backyard in our home. In a habit where we used all of the functions in our washing machine, I was able to use the most of the heat from the sun to save electricity usage. It was a nice experience because it give me thoughts on how hot is our climate, and to utilize natural habits on washing clothes. This got me thinking about how much the heat impacts our daily lives, and how can it be utilized on simple things, and just rewind how powerful climate change is." },
+  ]},
+  { id:'g3', days:[
+    { day:1, m:'john',    act:'Turn off the faucet while brushing your teeth', emoji:'🪥', g:'linear-gradient(135deg,#001a2a,#003a5a)', s:'Completed', v:'WEEK 3/W3_D1_Albano.mp4',
+      r:'I focused on conserving water today by turning off the faucet every time I brushed my teeth. This simple act prevents gallons of clean, treated water from being wasted unnecessarily down the drain. My biggest hurdle was overcoming my "autopilot" habit of leaving the water running without thinking. I learned that being a good environmental steward requires constant mindfulness of even the smallest daily routines.' },
+    { day:2, m:'john',    act:'Take shorter showers (set a time limit)', emoji:'🚿', g:'linear-gradient(135deg,#001428,#002a50)', s:'Completed', v:'WEEK 3/W3_D2_Albano.mp4',
+      r:'On this act, I limited my showers to a strict five-minute time limit to save water. Reducing shower time is highly beneficial because it conserves a massive amount of water and the energy used to heat it. The challenge was rushing through my routine and giving up the relaxation of a long, hot soak. I learned that I can still practice proper hygiene in a fraction of the time, proving that discipline is key to protecting our resources.' },
+    { day:3, m:'jea',     act:'Use a bucket instead of a hose for cleaning', emoji:'🪣', g:'linear-gradient(135deg,#002a10,#00502a)', s:'Completed', v:'WEEK 3/W3_D3_Mamparo.mov',
+      r:'Today, I used a bucket instead of a hose when cleaning. I realized that a hose can waste a lot of water if left running. Using a bucket only uses the amount of water that is needed. It is a simple way to save water at home. This small change can help protect the environment and reduce waste.' },
+    { day:4, m:'jahzara', act:'Reuse water (e.g., from rinsing vegetables) for plants or other uses', emoji:'♻️', g:'linear-gradient(135deg,#001a28,#004a68)', s:'In Progress', v:'WEEK 3/W3_D4_Andoy.mov',
+      r:"For this day, I tried reusing water instead of just throwing it away. After doing my laundry, I didn't drain the water right away and used it instead to clean the toilet/water closet. Honestly, it made me realize how much water we just waste without thinking. The water was still usable, especially for cleaning, so it felt more practical to reuse it rather than get fresh water again. In a way, it made me feel like I was being more resourceful, even in a small way. The only downside was the extra effort. It's not as convenient as just draining everything, and you have to actually think about where else you can use the water. But after doing it once, it didn't feel as hassle anymore. What I took from this is that not everything has to be done in a 'new' way every time. Sometimes, what we already used still has value. It just depends on whether we notice it or not." },
+    { day:5, m:'jea',     act:'Check for leaks and report or fix them', emoji:'🔧', g:'linear-gradient(135deg,#1a0000,#5a0000)', s:'Completed', v:'WEEK 3/W3_D5_Mamparo.mov',
+      r:'Today, I reported a water leak instead of ignoring it. I realized that even a small leak can waste a large amount of water every day if it is not fixed. Reporting leaks helps prevent water loss and keeps the community\'s water supply from being wasted. It also allows the proper people to repair the problem before it gets worse. This simple action can help save water and protect the environment.' },
+    { day:6, m:'jahzara', act:"Wash dishes efficiently (don't let water run continuously)", emoji:'🍽️', g:'linear-gradient(135deg,#0a0020,#200050)', s:'In Progress', v:'WEEK 3/W3_D6_Andoy.mov',
+      r:"For this day, I focused on washing dishes more efficiently by not letting the water run continuously. I tend to cook for dinner, and of course that means I end up with a lot of dishes after. Before, I didn't really pay attention and would just leave the tap running the whole time while washing. This time, I tried to be more mindful by turning off the water when I wasn't actively rinsing, like when I was scrubbing plates or utensils. It actually made me realize how much water I usually waste without noticing. At first, it felt a bit inconvenient because I had to keep turning the tap on and off, which broke my usual flow. But after a while, I got used to it and it didn't feel as hassle anymore. What I learned from this is that small changes in routine can make a difference, especially when it comes to daily tasks like this." },
+    { day:7, m:'richyll', act:'Collect rainwater for simple household use', emoji:'🌧️', g:'linear-gradient(135deg,#001a2a,#00406a)', s:'Completed', v:'WEEK 3/W3_D7_Solis.mp4',
+      r:"This method of collecting rainwater is one of the ways we have been saving water for a long time. For the past few days, the usual weather pattern has been sunny and clear during the day, and I can see the moon and stars at night. It is fitting that during this time, the summer season begins. Yet, I am glad that rainy weather allows me to collect rainwater at our household. This rainwater is one of our ways to conserve water, as we use it for many applications, such as watering our plants. When this accumulation takes a bit longer, it can lead to mosquito infestations. It taught me that conserving water is an important way for us to be conscious in our daily routines, and to use other sources of water, as this can help lessen water consumption and prevent problems around us." },
+  ]},
+  { id:'g4', days:[
+    { day:1, m:'john',    act:'Walk or bike for short distances', emoji:'🚶', g:'linear-gradient(135deg,#0a2a00,#2a6a00)', s:'In Progress', v:'WEEK 4/W4_D1_Albano.mp4',
+      r:"To practice a habit I used to have, I walked from the mall to my dorm today instead of riding a jeepney to reduce my carbon footprint. This action benefits the environment by reducing vehicle pollution and lowering fuel consumption, especially with the ongoing fuel crisis. The main challenge was the heat and the physical effort required compared to the convenience of public transport. Through this act, I was reminded how walking is a simple, healthy way to help the environment while staying active." },
+    { day:2, m:'john',    act:'Choose dining in a restaurant instead of taking out', emoji:'🍽️', g:'linear-gradient(135deg,#1a0a00,#5a2a00)', s:'In Progress', v:'WEEK 4/W4_D2_Albano.mp4',
+      r:"Today, I chose to dine in at a restaurant instead of ordering takeout to avoid using disposable packaging. Choosing to eat on-site is environmentally friendly because it eliminates the need for single-use plastic containers and plastic utensils. It was challenging to manage this during my busy schedule, as dining in takes much more time than grabbing food on the go. This experience made me realize that being intentional with my time can significantly reduce the waste I generate." },
+    { day:3, m:'jahzara', act:'Choose products with minimal or eco-friendly packaging', emoji:'🛒', g:'linear-gradient(135deg,#001a00,#004a00)', s:'In Progress', v:'WEEK 4/W4_D3_Andoy.mov',
+      r:"For this day, I focused on choosing products with minimal or eco-friendly packaging. I usually go to 7-Eleven to buy snacks, but I realized that most of what I get there comes in plastic and isn't really eco-friendly. So instead, I decided to buy snacks from the school cafeteria, where they use compostable materials and paper straws. It felt like a small switch, but it made me more aware of how much packaging comes with the things I usually buy. Choosing the cafeteria over convenience stores helped me reduce plastic waste, even just for that day. The only challenge was convenience. It's honestly easier and faster to just go to 7-Eleven since it has more options. But making a more conscious choice meant I had to be a bit more intentional with where I buy my food. From this, I realized that everyday choices, even something as simple as where I buy snacks, can have an impact." },
+    { day:4, m:'jea',     act:'Support local or eco-conscious products when possible', emoji:'🪭', g:'linear-gradient(135deg,#2a1500,#7a4500)', s:'Completed', v:'WEEK 4/W4_D4_Mamparo.mov',
+      r:"For this activity, I chose to use an abaniko instead of a mini electric fan. I realized that abaniko fans do not use electricity, which helps save energy. They also create less waste because they do not come with plastic packaging or require batteries. Buying abaniko fans can also support local sellers and small businesses. This simple choice is better for both the environment and the community." },
+    { day:5, m:'richyll', act:'Pick up and properly dispose of litter you see', emoji:'🧹', g:'linear-gradient(135deg,#001a1a,#004a4a)', s:'In Progress', v:'WEEK 4/W4_D5_Solis.mp4',
+      r:"Picking up litter and garbage around us is a simple act of being responsible to the environment, yet most of the people don't seem to act on it fully. My simple actions of picking up litter around my neighborhood can help lessen the amount of garbage accumulating around. I felt proud knowing that the act can be odd at first to others, but it gives them a view of how each one of us should be responsible for what we consume, and own as human beings. I also believe that responsibility starts within us, and learning and doing good deeds with each other can transcend beyond what is needed." },
+    { day:6, m:'richyll', act:'Share one environmental tip with a friend or online', emoji:'💬', g:'linear-gradient(135deg,#1a001a,#5a005a)', s:'In Progress', v:'WEEK 4/W4_D6_Solis.mp4',
+      r:"The learnings that I learned from this elective greatly apply, especially to chatting with a friend, regarding problems around our environment. My friend and I usually suffer from the effects of climate change, such as extreme heat when we go out, and the floods that affect our travel going home. Through sharing what I have learned, I am able to raise awareness to others and how each one of us can play a role in mitigating these problems with a simple conversation." },
+    { day:7, m:'jea',     act:'Have one "zero-waste day"', emoji:'🌿', g:'linear-gradient(135deg,#002800,#006000)', s:'Completed', v:'WEEK 4/W4_D7_Mamparo.mov',
+      r:"For Zero Waste Day, I used a reusable bag for groceries and brought a refillable water bottle instead of buying a plastic one. I realized that these simple choices can reduce the amount of waste we produce every day. Reusable items can be used many times, unlike single-use plastics that are quickly thrown away. They also help save resources and reduce pollution. This activity showed me that small habits can make a big difference for the environment." },
+  ]},
+];
+
+// TICKER
+const tickerItems = ['Bring a Reusable Bag','Turn Off the Lights','Shorten Your Shower','Walk When You Can','Unplug Unused Chargers','Reuse Before Recycling','Collect Rainwater','Segregate Your Trash','Use Both Sides of Paper','Choose Eco-Friendly Packaging'];
+const t = document.getElementById('tickerTrack');
+[...tickerItems,...tickerItems].forEach(txt => {
+  t.innerHTML += `<div class="ticker-item"><span class="ticker-dot"></span>${txt}</div>`;
+});
+
+// RENDER GRIDS
+WEEKS.forEach(wk => {
+  const grid = document.getElementById(wk.id);
+  wk.days.forEach((d, i) => {
+    const m = M[d.m];
+    const done = d.s === 'Completed';
+    const card = document.createElement('div');
+    card.className = 'day-card fade-in';
+    card.style.borderColor = m.color + '30';
+
+    // Serialize for modal safely
+    const safe = encodeURIComponent(JSON.stringify(d));
+
+    const videoThumb = d.v
+      ? `<video src="${d.v}" muted preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;" onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;"></video>`
+      : `<div class="video-area-bg" style="background:${d.g};"><div class="video-overlay"></div><span class="video-area-emoji">${d.emoji}</span></div>`;
+
+    card.innerHTML = `
+      <div class="day-card-header">
+        <div class="day-badge" style="background:${m.bg};color:${m.color};">Day ${d.day}</div>
+        <div class="member-tag" style="background:${m.bg};color:${m.color};">${m.icon} ${m.name.split(' ')[0]}</div>
+      </div>
+      <div class="video-area" onclick="openModal('${safe}')">
+        ${videoThumb}
+        <div class="play-btn">▶</div>
+        <div class="video-label">📹 ${d.act}</div>
+      </div>
+      <div class="day-card-body">
+        <div class="activity-title">${d.act}</div>
+        <div class="reflection-text collapsed" id="r-${wk.id}-${i}">${d.r}</div>
+        <button class="read-toggle" style="color:${m.color};" onclick="toggleRef('r-${wk.id}-${i}',this)">Read more →</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+});
+
+function toggleRef(id, btn) {
+  const el = document.getElementById(id);
+  if (el.classList.contains('collapsed')) { el.classList.remove('collapsed'); btn.textContent = 'Read less ↑'; }
+  else { el.classList.add('collapsed'); btn.textContent = 'Read more →'; }
+}
+
+function openModal(enc) {
+  const d = JSON.parse(decodeURIComponent(enc));
+  const m = M[d.m];
+  const done = d.s === 'Completed';
+  document.getElementById('modalVideo').innerHTML = d.v
+    ? `<video src="${d.v}" controls autoplay style="width:100%;height:100%;object-fit:contain;border-radius:12px;background:#000;"></video>`
+    : `<div style="width:100%;height:100%;background:${d.g};display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;border-radius:12px;"><span style="font-size:4rem;">${d.emoji}</span><span style="font-size:.8rem;color:rgba(255,255,255,.55);letter-spacing:1px;">📹 Video clip goes here</span><span style="font-size:.7rem;color:rgba(255,255,255,.35);">${done ? '✅ Completed' : '⏳ In Progress'}</span></div>`;
+  document.getElementById('modalMemberTag').innerHTML = `<div class="modal-member-tag" style="background:${m.bg};color:${m.color};">${m.icon} ${m.name}</div>`;
+  document.getElementById('modalTitle').textContent = d.act;
+  document.getElementById('modalBody').textContent = d.r;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
+
+function submitCommunity() {
+  const name = document.getElementById('cfName').value.trim();
+  const msg = document.getElementById('cfMessage').value.trim();
+  if (!name) { document.getElementById('cfName').focus(); return; }
+  if (!msg) { document.getElementById('cfMessage').focus(); return; }
+  document.getElementById('communityForm').style.display = 'none';
+  const s = document.getElementById('communitySuccess');
+  s.style.display = 'block';
+  setTimeout(() => s.classList.add('visible'), 50);
+}
+
+// SCROLL ANIMATIONS
+const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.07 });
+function initObs() { document.querySelectorAll('.fade-in').forEach(el => obs.observe(el)); }
+initObs();
+window.addEventListener('scroll', () => { document.querySelectorAll('.fade-in:not(.visible)').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 40) el.classList.add('visible'); }); });
+setTimeout(() => { document.querySelectorAll('.fade-in').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }); initObs(); }, 120);
+</script>
+</body>
+</html>
